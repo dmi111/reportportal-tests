@@ -1,0 +1,19 @@
+# Intellij
+.idea/
+*.iml
+*.iws
+out/
+
+# Maven
+log/
+target/
+
+# Ignore Maven build output directory
+**/build
+
+# Ignore debug logs
+**/*debug.log
+
+**/*results
+
+**/out
