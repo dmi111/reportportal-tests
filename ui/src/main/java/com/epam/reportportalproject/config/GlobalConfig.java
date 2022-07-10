@@ -14,6 +14,7 @@ public class GlobalConfig {
     private final String browserType;
     private final String browserName;
     private final String baseUrl;
+    private final String remoteHubUrl;
 
     public GlobalConfig() throws IOException {
         propertyFile = new File(PROPERTIES_PATH);
@@ -22,6 +23,7 @@ public class GlobalConfig {
         browserType = properties.getProperty("browser.type");
         browserName = properties.getProperty("browser.name");
         baseUrl = properties.getProperty("base.url");
+        remoteHubUrl = properties.getProperty("remote.hub.url");
     }
 
     public static GlobalConfig getGlobalConfig() throws IOException {
