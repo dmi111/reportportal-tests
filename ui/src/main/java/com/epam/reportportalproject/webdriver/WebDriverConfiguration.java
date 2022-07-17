@@ -19,4 +19,9 @@ public class WebDriverConfiguration {
         Configuration.startMaximized = startMaximized;
         return this;
     }
+
+    public WebDriverConfiguration setRemote(String remote) {
+        Configuration.remote = remote;
+        return this;
+    }
 }
