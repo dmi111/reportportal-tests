@@ -1,0 +1,6 @@
+total, passed, failed, skipped, product bug, auto bug, system issue, to investigate
+30,     30,     "",     "",     "",             "",     "",             ""
+25,     20,     5,      "",     4,              1,     "",              2
+20,     10,     8,      2,      4,              4,      "",             10
+15,     5,      9,      1,      1,              5,      4,              8
+10,     1,      9,      "",     "",             1,      8,              5

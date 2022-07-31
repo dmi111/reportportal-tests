@@ -1,25 +1,30 @@
 package com.epam.reportportalproject;
 
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
+import com.codeborne.selenide.WebDriverRunner;
+import com.epam.reportportal.junit5.ReportPortalExtension;
 import com.epam.reportportalproject.config.GlobalConfig;
 import com.epam.reportportalproject.reporter.ReportPortalLogger;
 import com.epam.reportportalproject.webdriver.DriverFactory;
 import java.io.IOException;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
-@Listeners({ReportPortalTestNGListener.class})
+@Execution(ExecutionMode.CONCURRENT)
+@ExtendWith(ReportPortalExtension.class)
 public class BaseTest {
 
-    @BeforeMethod()
+    @BeforeEach()
     public void setUp() throws IOException {
         DriverFactory.configure(GlobalConfig.getGlobalConfig().getBaseUrl());
     }
 
-    @AfterMethod()
+    @AfterEach()
     public void tearDown() {
         //Not used temporary
         //ReportPortalLogger.logFailedTest();
+        WebDriverRunner.getWebDriver().quit();
     }
 }

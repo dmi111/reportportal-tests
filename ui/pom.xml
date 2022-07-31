@@ -12,9 +12,12 @@
 
     <properties>
         <selenide.version>5.25.0-selenium-4.0.0</selenide.version>
-        <logger-java-log4j.version>5.0.3</logger-java-log4j.version>
-        <agent-java-testng.version>5.0.8</agent-java-testng.version>
+        <logger-java-log4j.version>5.1.1</logger-java-log4j.version>
         <log4j.version>2.15.0</log4j.version>
+        <junit.version>5.8.2</junit.version>
+        <rp-junit.version>5.1.0</rp-junit.version>
+        <surefire-plugin.version>2.22.2</surefire-plugin.version>
+        <guava.version>30.1-jre</guava.version>
     </properties>
     <repositories>
         <repository>
@@ -28,6 +31,18 @@
     </repositories>
     <dependencies>
         <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>${selenide.version}</version>
@@ -39,9 +54,14 @@
             <version>${log4j.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.epam.reportportal</groupId>
-            <artifactId>agent-java-testng</artifactId>
-            <version>${agent-java-testng.version}</version>
+            <artifactId>agent-java-junit5</artifactId>
+            <version>${rp-junit.version}</version>
         </dependency>
         <dependency>
             <groupId>com.epam.reportportal</groupId>
@@ -54,17 +74,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>${surefire-plugin.version}</version>
                 <configuration>
                     <properties>
-                        <property>
-                            <name>usedefaultlisteners</name>
-                            <value>false</value>
-                        </property>
-                        <property>
-                            <name>listener</name>
-                            <value>com.epam.reportportal.testng.ReportPortalTestNGListener</value>
-                        </property>
+                        <configurationParameters>
+                            junit.jupiter.extensions.autodetection.enabled = true
+                        </configurationParameters>
                     </properties>
                 </configuration>
             </plugin>
